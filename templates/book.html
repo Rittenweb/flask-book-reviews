@@ -1,37 +1,32 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block title %} {{ book.title }} {% endblock %} {% block body %}
+<h1>Detailed Book Profile</h1>
 
-{% block title %}
-    {{ book.title }}
-{% endblock %}
+<ul>
+  <li>Title: {{ book.title }}</li>
+  <li>Author: {{ book.author }}</li>
+  <li>Year: {{ book.year }}</li>
+  <li>ISBN: {{ book.isbn }}</li>
+  <li>Goodreads average rating: {{ gravg }}</li>
+  <li>Goodreads number of reviews: {{ grcount }}</li>
+</ul>
 
-{% block body %} 
-    <h1>Detailed Book Profile</h1>
+{% if notreviewed %}
+<h2>Review this book:</h2>
+<form action="{{ url_for('book', book_id=book.id) }}" method="post">
+  Rating out of 10: <input type="number" name="rating" min="0" max="10" /> Your review:
+  <input type="text" name="reviewtext" />
+  <input type="submit" value="Submit" />
+  {% endif %}
 
-    <ul>
-        <li>Title: {{ book.title }}</li>
-        <li>Author: {{ book.author }}</li>
-        <li>Year: {{ book.year }}</li>
-        <li>ISBN: {{ book.isbn }}</li>
-        <li>Goodreads average rating: {{ gravg }}</li>
-        <li>Goodreads number of reviews: {{ grcount }}</li>
-    </ul>
+  <h2>Reviews</h2>
+  {% for review in reviews %}
+  <h4>{{ review.username }} rated this book {{ review.rating }} at {{ review.timestamp }}</h4>
+  <p>{{ review.text }}</p>
+  {% else %}
+  <li>No reviews yet.</li>
+  {% endfor %}
 
-    {% if notreviewed %}
-    <h2>Review this book:</h2>
-    <form action="{{ url_for('book', book_id=book.id) }}" method="post">
-        Rating out of 10: <input type="number" name="rating" min="0" max="10">
-        Your review: <input type="text" name="reviewtext">
-        <input type="submit" value="Submit">
-    {% endif %}
-
-    <h2>Reviews</h2>
-    {% for review in reviews %}
-        <h4>{{ review.username }} rated this book {{ review.rating }} at {{ review.timestamp }}</h4>
-        <p>{{ review.text }}</p>
-    {% else %}
-        <li>No reviews yet.</li>
-    {% endfor %}
-
-    <a href="{{ url_for('index') }}">Search another book</a>
-    <a href="{{ url_for('logout') }}">Logout</a>
-{% endblock %}
+  <a href="{{ url_for('index') }}">Search another book</a>
+  <a href="{{ url_for('logout') }}">Logout</a>
+  {% endblock %}
+</form>
