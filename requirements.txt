@@ -1,5 +1,6 @@
 Flask
 Flask-Session
+requests
 waitress
 psycopg2
 SQLAlchemy
