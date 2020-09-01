@@ -4,3 +4,4 @@ requests
 waitress
 psycopg2
 SQLAlchemy
+Flask-Dance[sqla]

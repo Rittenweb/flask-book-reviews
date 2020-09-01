@@ -1,7 +1,9 @@
 import os
 import requests
 
-from flask import Flask, session, render_template, request, jsonify
+from flask import Flask, session, render_template, request, jsonify, redirect, url_for
+from flask_dance.contrib.facebook import make_facebook_blueprint, facebook
+from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStorage
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -83,6 +85,8 @@ def search():
 
 @app.route("/book/<int:book_id>", methods=["GET", "POST"])
 def book(book_id):
+    if session.get("user_id") is None:
+        return render_template("index.html")
     book = db.execute("SELECT * FROM books WHERE id = :id", {"id": book_id}).fetchone()
     if book is None:
         return render_template("error.html", message="Non-existent.")
@@ -93,7 +97,7 @@ def book(book_id):
         notreviewed = True
     else:
         notreviewed = False
-    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "C2uCWlOrwroxbM8zDQDm8Q", "isbns": book.isbn})
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": os.getenv("GOODREADS_API_KEY"), "isbns": book.isbn})
     if res.status_code != 200:
         gravg = "N/A"
         grcount = "N/A"
