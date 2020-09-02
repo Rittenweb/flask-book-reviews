@@ -2,8 +2,6 @@ import os
 import requests
 
 from flask import Flask, session, render_template, request, jsonify, redirect, url_for
-from flask_dance.contrib.facebook import make_facebook_blueprint, facebook
-from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStorage
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -86,7 +84,7 @@ def search():
 @app.route("/book/<int:book_id>", methods=["GET", "POST"])
 def book(book_id):
     if session.get("user_id") is None:
-        return render_template("index.html")
+        return redirect(url_for('index'))
     book = db.execute("SELECT * FROM books WHERE id = :id", {"id": book_id}).fetchone()
     if book is None:
         return render_template("error.html", message="Non-existent.")
