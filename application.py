@@ -9,9 +9,15 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Check for environment variable
+# Check for environment variables
+if not os.getenv("FLASK_SECRET_KEY"):
+    raise RuntimeError("FLASK_SECRET_KEY is not set")
 if not os.getenv("DATABASE_URL"):
     raise RuntimeError("DATABASE_URL is not set")
+if not os.getenv("GOODREADS_API_KEY"):
+    raise RuntimeError("GOODREADS_API_KEY is not set")
+
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
 # Configure session to use filesystem
 app.config["SESSION_PERMANENT"] = False
