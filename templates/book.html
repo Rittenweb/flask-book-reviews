@@ -1,29 +1,28 @@
 {% extends "layout.html" %} {% block title %} {{ book.title }} {% endblock %} {% block body %}
-<h1>Detailed Book Profile</h1>
+<h1><i>{{book.title}}</i> by {{book.author}}</h1>
 
-<ul>
-  <li>Title: {{ book.title }}</li>
-  <li>Author: {{ book.author }}</li>
-  <li>Year: {{ book.year }}</li>
-  <li>ISBN: {{ book.isbn }}</li>
-  <li>Goodreads average rating: {{ gravg }}</li>
-  <li>Goodreads number of reviews: {{ grcount }}</li>
-</ul>
+<h3>Info</h3>
+<h5>ISBN: {{ book.isbn }}</h5>
+<h5>Published: {{ book.year }}</h5>
+
+<h3>Goodreads Stats</h3>
+<h5>Average Rating: {{ gravg }}</h5>
+<h5>Number of Reviews: {{ grcount }}</h5>
 
 {% if notreviewed %}
-<h2>Review this book:</h2>
+<h2>Review This Book:</h2>
 <form action="{{ url_for('book', book_id=book.id) }}" method="post">
-  Rating out of 10: <input type="number" name="rating" min="0" max="10" /> Your review:
+  Your rating out of 10: <input type="number" name="rating" min="0" max="10" /> Your review:
   <input type="text" name="reviewtext" />
   <input type="submit" value="Submit" />
   {% endif %}
 
-  <h2>Reviews</h2>
+  <h2>User Reviews</h2>
   {% for review in reviews %}
   <h4>{{ review.username }} rated this book {{ review.rating }} at {{ review.timestamp }}</h4>
   <p>{{ review.text }}</p>
   {% else %}
-  <li>No reviews yet.</li>
+  <li>No reviews yet... :'(</li>
   {% endfor %}
 
   <a href="{{ url_for('index') }}">Search another book</a>
