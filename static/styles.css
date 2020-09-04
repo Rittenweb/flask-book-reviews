@@ -1,6 +1,12 @@
 html {
   background-image: url('./glyphpattern2.png');
   color: #212528;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+*::selection {
+  background: #a9a07f;
+  color: whitesmoke;
 }
 
 body {
@@ -9,8 +15,45 @@ body {
   padding: 4rem;
 }
 
+div {
+  margin: 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+p {
+  font-size: 1.4rem;
+}
+
 button {
+  background: #212528;
+  margin: 1rem;
+  border: 3px solid #a9a07f;
+  color: #a9a07f;
+  padding: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+}
+
+.big-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.big-button {
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+button:hover {
+  cursor: pointer;
   background: #a9a07f;
+  color: #212528;
+  border: 3px solid #212528;
 }
 
 .body {
@@ -22,34 +65,66 @@ button {
     12.5px 12.5px 0px #eaeaea, 13.5px 13.5px 0px black, 15px 15px 0px #eaeaea;
 }
 
+.label {
+  padding: 0 1rem;
+}
+
 .paper {
   background: url('./handmadepaper.png');
-  box-shadow: 8px 8px 16px #212528;
+  box-shadow: 4px 4px 8px #212528;
   padding: 1rem;
   margin: 1rem;
 }
 
 .bookstats {
-  width: 70%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
 .bookstat {
-  width: 40%;
+  width: 20vw;
 }
 
 .book-divider {
   width: 60%;
-  margin: 0 20%;
+  margin: 5vh 20%;
 }
 
 .reviews {
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
 .reviewblock {
-  width: 40%;
+  width: 25vw;
+}
+
+.review-textarea {
+  width: 90%;
+  height: 100px;
+  resize: none;
+  margin: 0 1rem;
+}
+
+.review-text {
+  margin-left: 1rem;
+}
+
+.review {
+  margin-bottom: 50px;
+}
+
+.i {
+  font-style: italic;
+}
+
+.b {
+  font-weight: 700;
+}
+
+.hand {
+  font-family: 'Charm', cursive;
+  color: #878169;
 }

@@ -1,44 +1,58 @@
-{% extends "layout.html" %} {% block title %} {{ book.title }} {% endblock %} {% block body %}
-<h1><i>{{book.title}}</i> by {{book.author}}</h1>
+{% extends "layout.html" %} {% block title %} {{ book.title }} by {{book.author}} {% endblock %} {% block body %}
+<h1><span class="i">{{book.title}}</span> by {{book.author}}</h1>
 
 <div class="bookstats">
-  <div class="paper bookstat">
-    <h3>Info</h3>
-    <h5>ISBN: {{ book.isbn }}</h5>
-    <h5>Published: {{ book.year }}</h5>
+  <div>
+    <u><h2 class="label">Publishing Info</h2></u>
+    <div class="paper bookstat">
+      <p>ISBN — <span class="hand">{{ book.isbn }}</span></p>
+      <p>Year Published — <span class="hand">{{ book.year }}</span></p>
+    </div>
   </div>
 
-  <div class="paper bookstat">
-    <h3>Goodreads Stats</h3>
-    <h5>Average Rating: {{ gravg }}</h5>
-    <h5>Number of Reviews: {{ grcount }}</h5>
+  <div>
+    <u><h2 class="label">Goodreads Stats</h2></u>
+    <div class="paper bookstat">
+      <p>Average Rating — <span class="hand">{{ gravg }}</span></p>
+      <p>Number of Reviews — <span class="hand">{{ grcount }}</span></p>
+    </div>
   </div>
 </div>
 
-<img src="../static/toppng.com-line-dividers-png-1000x200.png" alt="divider" class="book-divider"/>
+<img src="../static/toppng.com-line-dividers-png-1000x200.png" alt="divider" class="book-divider" />
 <div class="reviews">
-
-{% if notreviewed %}
-<div class="paper reviewblock">
-
-<h2>Review This Book:</h2>
-<form action="{{ url_for('book', book_id=book.id) }}" method="post">
-  Your rating out of 10: <input type="number" name="rating" min="0" max="10" /> Your review:
-  <input type="text" name="reviewtext" />
-  <input type="submit" value="Submit" />
-</div>
+  {% if notreviewed %}
+  <div>
+    <u><h2 class="label">Review this Book</h2></u>
+    <div class="paper reviewblock">
+      <form action="{{ url_for('book', book_id=book.id) }}" method="post">
+        <div><label>Your rating out of 10: </label><input type="number" name="rating" min="0" max="10" required /></div>
+        <div><label>Your review:</label></div>
+        <textarea name="reviewtext" class="review-textarea"></textarea> <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
   {% endif %}
-  <div class="paper reviewblock">
-  <h2>User Reviews</h2>
-  {% for review in reviews %}
-  <h4>{{ review.username }} rated this book {{ review.rating }} on {{ review.timestamp.day }}/{{ review.timestamp.month }}/{{ review.timestamp.year }}</h4>
-  <p>{{ review.text }}</p>
-  {% else %}
-  No reviews yet... :'(
-  {% endfor %}
+
+  <div>
+    <u><h2 class="label">User Reviews</h2></u>
+    <div class="paper reviewblock">
+      {% for review in reviews %}
+      <div class="review">
+        <h4>
+          <span class="hand">{{ review.username }}</span> rated this book
+          <span class="hand">{{ review.rating }}/10</span> on
+          <span class="hand">{{ review.timestamp.month }}/{{ review.timestamp.day }}/{{ review.timestamp.year }}</span>:
+        </h4>
+        <p><span class="hand review-text">{{ review.text }}</span></p>
+      </div>
+      {% else %} No reviews yet... :'( {% endfor %}
+    </div>
   </div>
 </div>
-  <a href="{{ url_for('index') }}"><button>Search another book</button></a>
-  <a href="{{ url_for('logout') }}"><button>Logout</button></a>
-  {% endblock %}
-</form>
+<div class="big-buttons">
+  <a href="{{ url_for('index') }}"><button class="big-button">Search another book</button></a>
+  <a href="{{ url_for('logout') }}"><button class="big-button">Logout</button></a>
+</div>
+{% endblock %}
