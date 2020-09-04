@@ -1,31 +1,44 @@
 {% extends "layout.html" %} {% block title %} {{ book.title }} {% endblock %} {% block body %}
 <h1><i>{{book.title}}</i> by {{book.author}}</h1>
 
-<h3>Info</h3>
-<h5>ISBN: {{ book.isbn }}</h5>
-<h5>Published: {{ book.year }}</h5>
+<div class="bookstats">
+  <div class="paper bookstat">
+    <h3>Info</h3>
+    <h5>ISBN: {{ book.isbn }}</h5>
+    <h5>Published: {{ book.year }}</h5>
+  </div>
 
-<h3>Goodreads Stats</h3>
-<h5>Average Rating: {{ gravg }}</h5>
-<h5>Number of Reviews: {{ grcount }}</h5>
+  <div class="paper bookstat">
+    <h3>Goodreads Stats</h3>
+    <h5>Average Rating: {{ gravg }}</h5>
+    <h5>Number of Reviews: {{ grcount }}</h5>
+  </div>
+</div>
+
+<img src="../static/toppng.com-line-dividers-png-1000x200.png" alt="divider" class="book-divider"/>
+<div class="reviews">
 
 {% if notreviewed %}
+<div class="paper reviewblock">
+
 <h2>Review This Book:</h2>
 <form action="{{ url_for('book', book_id=book.id) }}" method="post">
   Your rating out of 10: <input type="number" name="rating" min="0" max="10" /> Your review:
   <input type="text" name="reviewtext" />
   <input type="submit" value="Submit" />
+</div>
   {% endif %}
-
+  <div class="paper reviewblock">
   <h2>User Reviews</h2>
   {% for review in reviews %}
-  <h4>{{ review.username }} rated this book {{ review.rating }} at {{ review.timestamp }}</h4>
+  <h4>{{ review.username }} rated this book {{ review.rating }} on {{ review.timestamp.day }}/{{ review.timestamp.month }}/{{ review.timestamp.year }}</h4>
   <p>{{ review.text }}</p>
   {% else %}
-  <li>No reviews yet... :'(</li>
+  No reviews yet... :'(
   {% endfor %}
-
-  <a href="{{ url_for('index') }}">Search another book</a>
-  <a href="{{ url_for('logout') }}">Logout</a>
+  </div>
+</div>
+  <a href="{{ url_for('index') }}"><button>Search another book</button></a>
+  <a href="{{ url_for('logout') }}"><button>Logout</button></a>
   {% endblock %}
 </form>
