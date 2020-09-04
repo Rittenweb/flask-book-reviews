@@ -38,6 +38,10 @@ button {
   font-size: 1rem;
 }
 
+input {
+  font-family: 'Cormorant Garamond', serif;
+}
+
 .big-buttons {
   display: flex;
   width: 100%;
@@ -74,6 +78,22 @@ button:hover {
   box-shadow: 4px 4px 8px #212528;
   padding: 1rem;
   margin: 1rem;
+}
+
+.register-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.register-login input {
+  padding: 0.5rem;
+  width: 12vw;
+}
+
+.register-login h4 {
+  margin-right: 2rem;
 }
 
 .bookstats {
