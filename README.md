@@ -4,12 +4,12 @@ A simple full-stack app in the style of Goodreads.
 
 Features:
 
-*Session-secured user registration.
-*A search function to navigate the 5000 popular books in the SQL database.
-*A dynamically templated page for each book result.
-*Goodreads review statistics pulled from their developer's API.
-*A review form to write a new row into to the SQL database -- the review will be joined to both the current user and the book.
-*Viewing of all other reviews users of the site have left on the current book.
+- Session-secured user registration.
+- A search function to navigate the 5000 popular books in the SQL database.
+- A dynamically templated page for each book result.
+- Goodreads review statistics pulled from their developer's API.
+- A review form to write a new row into to the SQL database -- the review will be joined to both the current user and the book.
+- Viewing of all other reviews users of the site have left on the current book.
 
 # API Route
 
