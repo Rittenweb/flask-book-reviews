@@ -2,6 +2,11 @@ html {
   background-image: url('./glyphpattern2.png');
   color: #212528;
   font-family: 'Cormorant Garamond', serif;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 *::selection {
@@ -125,6 +130,7 @@ button:hover {
 .search-results {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 60vw;
   margin: 5vw;
 }
