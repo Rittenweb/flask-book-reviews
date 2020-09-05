@@ -1,12 +1,7 @@
 html {
   background-image: url('./glyphpattern2.png');
   color: #212528;
-  font-family: 'Cormorant Garamond', serif;
-  min-height: 100vh;
-  min-width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-family: 'Fondamento', serif;
 }
 
 *::selection {
@@ -17,7 +12,11 @@ html {
 body {
   display: flex;
   justify-content: center;
-  padding: 4rem;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 div {
@@ -39,12 +38,12 @@ button {
   border: 3px solid #a9a07f;
   color: #a9a07f;
   padding: 0.5rem;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Fondamento', serif;
   font-size: 1rem;
 }
 
 input {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Fondamento', serif;
 }
 
 .big-buttons {
@@ -68,6 +67,7 @@ button:hover {
 .body {
   background: url('./paper.png');
   padding: 2rem;
+  margin: 5rem;
   width: 70vw;
   box-shadow: 1px 1px 0px black, 2.5px 2.5px 0px #eaeaea, 3.5px 3.5px 0px black, 5px 5px 0px #eaeaea, 6px 6px 0px black,
     7.5px 7.5px 0px #eaeaea, 8.5px 8.5px 0px black, 10px 10px 0px #eaeaea, 11px 11px 0px black,
@@ -195,6 +195,7 @@ button:hover {
 }
 
 .hand {
-  font-family: 'Charm', cursive;
+  font-family: 'Tangerine', cursive;
   color: #878169;
+  font-size: 2rem;
 }
