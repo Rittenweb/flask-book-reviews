@@ -2,6 +2,7 @@
 
 A simple full-stack app in the style of Goodreads.
 
+![Screenshot](static/readme_screenshot2.png)
 ![Screenshot](static/readme_screenshot.png)
 
 Features:
