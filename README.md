@@ -2,6 +2,8 @@
 
 A simple full-stack app in the style of Goodreads.
 
+![Screenshot](static/readme_screenshot.png)
+
 Features:
 
 - Session-secured user registration.
