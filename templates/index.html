@@ -2,16 +2,16 @@
 <div class="register-login">
   <h4>Login:</h4>
   <form action="{{ url_for('search') }}" method="post">
-    <input type="text" name="usernamelogin" placeholder="Username" />
-    <input type="password" name="passwordlogin" placeholder="Password" />
+    <input type="text" name="usernamelogin" placeholder="Username" aria-label="usernamelogin" />
+    <input type="password" name="passwordlogin" placeholder="Password" aria-label="passwordlogin" />
     <button type="submit">Submit</button>
   </form>
 </div>
 <div class="register-login">
   <h4>Register:</h4>
   <form action="{{ url_for('registration') }}" method="post">
-    <input type="text" name="usernameregister" placeholder="Username" />
-    <input type="password" name="passwordregister" placeholder="Password" />
+    <input type="text" name="usernameregister" placeholder="Username" aria-label="usernameregister" />
+    <input type="password" name="passwordregister" placeholder="Password" aria-label="passwordregister" />
     <button type="submit">Submit</button>
   </form>
 </div>
