@@ -2,19 +2,14 @@
 <h1><span class="i">{{book.title}}</span> by {{book.author}}</h1>
 
 <div class="bookstats">
+  <a href="https://openlibrary.org/"> <img src="{{queryString}}" class="cover" alt="book cover image" /> </a>
   <div>
-    <u><h2 class="label">Publishing Info</h2></u>
+    <u><h2 class="label">Statistics</h2></u>
     <div class="paper bookstat">
       <p>ISBN — <span class="hand">{{ book.isbn }}</span></p>
       <p>Year Published — <span class="hand">{{ book.year }}</span></p>
-    </div>
-  </div>
-
-  <div>
-    <u><h2 class="label">Goodreads Stats</h2></u>
-    <div class="paper bookstat">
-      <p>Average Rating — <span class="hand">{{ gravg }}</span></p>
-      <p>Number of Reviews — <span class="hand">{{ grcount }}</span></p>
+      <p>Goodreads Avg. Rating — <span class="hand">{{ gravg }}</span></p>
+      <p>Goodreads Review Count — <span class="hand">{{ grcount }}</span></p>
     </div>
   </div>
 </div>

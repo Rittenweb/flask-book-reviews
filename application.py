@@ -110,7 +110,8 @@ def book(book_id):
         gravg = data["books"][0]["average_rating"]
         grcount = data["books"][0]["work_ratings_count"]
     reviews = db.execute("SELECT username, rating, timestamp, text FROM reviews JOIN users ON reviews.user_id = users.id WHERE book_id = :bookid", {"bookid": book_id}).fetchall()
-    return render_template("book.html", book=book, notreviewed=notreviewed, reviews=reviews, gravg=gravg, grcount=grcount)
+    queryString = "http://covers.openlibrary.org/b/isbn/" + book.isbn + "-L.jpg"
+    return render_template("book.html", book=book, notreviewed=notreviewed, reviews=reviews, gravg=gravg, grcount=grcount, queryString=queryString)
 
 @app.route("/api/<isbn>")
 def book_api(isbn):
